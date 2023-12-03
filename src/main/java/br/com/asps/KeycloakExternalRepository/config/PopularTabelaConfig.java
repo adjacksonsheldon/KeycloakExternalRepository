@@ -23,10 +23,11 @@ public class PopularTabelaConfig {
                 .userId(UUID.randomUUID().toString())
                 .firstName("Adjackson")
                 .lastName("Silva")
+                .userName("asps")
                 .email("asps@gmail.com")
                 .encryptedPassword(bCryptPasswordEncoder.encode("123"))
                 .emailVerificationToken("")
-                .emailVerificationStatus(false)
+                .emailVerificationStatus(true)
                 .build();
 
         usuarioRepository.save(usuario);

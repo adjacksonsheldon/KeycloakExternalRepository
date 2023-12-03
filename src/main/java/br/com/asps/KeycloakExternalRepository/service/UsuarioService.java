@@ -17,9 +17,12 @@ public class UsuarioService {
     public Usuario findByEmail(String email) {
         return repository.findByEmail(email);
     }
+    public Usuario findByUserName(String userName) {
+        return repository.findByUserName(userName);
+    }
 
-    public Boolean isPasswordValido(String email, String password){
-        final var usuario = repository.findByEmail(email);
+    public Boolean isPasswordValido(String userName, String password){
+        final var usuario = repository.findByUserName(userName);
 
         if(nonNull(usuario)){
             return bCryptPasswordEncoder.matches(password,

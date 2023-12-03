@@ -18,6 +18,8 @@ public class Usuario {
     @Column(nullable = false)
     private String userId;
 
+    private String userName;
+
     @Column(nullable = false, length = 50)
     private String firstName;
 
