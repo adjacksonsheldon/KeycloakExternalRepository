@@ -21,8 +21,8 @@ public class UsuarioService {
         return repository.findByUserName(userName);
     }
 
-    public Boolean isPasswordValido(String userName, String password){
-        final var usuario = repository.findByUserName(userName);
+    public Boolean isPasswordValido(String email, String password){
+        final var usuario = repository.findByEmail(email);
 
         if(nonNull(usuario)){
             return bCryptPasswordEncoder.matches(password,

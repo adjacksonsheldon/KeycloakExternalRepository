@@ -7,17 +7,25 @@ import br.com.asps.KeycloakExternalRepository.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import static java.util.Objects.nonNull;
+
 @RestController
 @RequestMapping(value = "/usuarios")
 @RequiredArgsConstructor
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
-    @GetMapping("/{userName}")
-    public UsuarioResponse findByUsername(@PathVariable("userName") String userName) {
-        System.out.println("Solicitando dados do usuário " + userName);
 
-        return UsuarioResponseMapper.INSTANCE.fromUsuario(usuarioService.findByUserName(userName));
+    @GetMapping
+    public UsuarioResponse consultar(@RequestParam(value = "userName", required = false) String userName,
+                                     @RequestParam(value = "email", required = false) String email) {
+        if(nonNull(userName))
+            return UsuarioResponseMapper.INSTANCE.fromUsuario(usuarioService.findByUserName(userName));
+
+        if(nonNull(email))
+            return UsuarioResponseMapper.INSTANCE.fromUsuario(usuarioService.findByEmail(email));
+
+        return null;
     }
 
     @PostMapping("/{userName}/verify-password")
