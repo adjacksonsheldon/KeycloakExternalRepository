@@ -30,8 +30,7 @@ public class UsuarioController {
 
     @PostMapping("/{userName}/verify-password")
     public VerifyPasswordResponse verifyUserPassword(@PathVariable("userName") String userName,
-                                                     @RequestBody String password) {
-        System.out.println("Validando usuário  " + userName + " e senha " + password + ".");
+                                                     @RequestParam("password") String password) {
         final var isPasswordValido = usuarioService.isPasswordValido(userName, password);
 
         return VerifyPasswordResponse.builder()
